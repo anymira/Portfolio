@@ -583,7 +583,7 @@ footer {
 /* МОБИЛЬНАЯ ВЕРСИЯ */
 @media (max-width: 768px) {
     h1 {
-        font-size: 14vw;
+        font-size: 12vw;
         letter-spacing: 0.2em;
         word-spacing: -0.2em;
         padding: 0 10px;
