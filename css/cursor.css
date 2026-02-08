@@ -1,7 +1,5 @@
-/* КАСТОМНЫЙ КУРСОР */
-a,
-button,
-.project-card {
+/* Отключаем стандартный курсор */
+body, a, button, .project-card {
     cursor: none;
 }
 
@@ -15,12 +13,10 @@ button,
     border: 2px solid #fff;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition:
-        width 0.3s ease,
-        height 0.3s ease,
-        background-color 0.3s ease,
-        border-width 0.3s ease;
+    
+    /* УБРАЛИ transform: translate(-50%, -50%) */
+    /* УБРАЛИ transition для transform, чтобы не тормозило */
+    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
     mix-blend-mode: difference;
 }
 
@@ -28,7 +24,6 @@ button,
     width: 60px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.1);
-    border-width: 1px;
 }
 
 .cursor-dot {
@@ -41,18 +36,7 @@ button,
     background-color: #fff;
     pointer-events: none;
     z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease;
-}
-
-.cursor-dot.hover {
-    transform: translate(-50%, -50%) scale(0);
-}
-
-/* Скрываем кастомный курсор на мобильных устройствах */
-@media (max-width: 768px) {
-    .custom-cursor,
-    .cursor-dot {
-        display: none;
-    }
+    
+    /* УБРАЛИ transform: translate(-50%, -50%) */
+    /* УБРАЛИ transition вообще */
 }
