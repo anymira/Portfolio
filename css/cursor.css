@@ -1,5 +1,8 @@
 /* Отключаем стандартный курсор */
-body, a, button, .project-card {
+body,
+a,
+button,
+.project-card {
     cursor: none;
 }
 
@@ -13,10 +16,14 @@ body, a, button, .project-card {
     border: 2px solid #fff;
     pointer-events: none;
     z-index: 9999;
-    
+
     /* УБРАЛИ transform: translate(-50%, -50%) */
     /* УБРАЛИ transition для transform, чтобы не тормозило */
-    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+    transition:
+        width 0.3s,
+        height 0.3s,
+        background-color 0.3s,
+        opacity 0.3s;
     mix-blend-mode: difference;
 }
 
@@ -36,7 +43,7 @@ body, a, button, .project-card {
     background-color: #fff;
     pointer-events: none;
     z-index: 10000;
-    
+
     /* УБРАЛИ transform: translate(-50%, -50%) */
     /* УБРАЛИ transition вообще */
 }
