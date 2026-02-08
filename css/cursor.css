@@ -1,0 +1,58 @@
+/* КАСТОМНЫЙ КУРСОР */
+a,
+button,
+.project-card {
+    cursor: none;
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition:
+        width 0.3s ease,
+        height 0.3s ease,
+        background-color 0.3s ease,
+        border-width 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-width: 1px;
+}
+
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease;
+}
+
+.cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Скрываем кастомный курсор на мобильных устройствах */
+@media (max-width: 768px) {
+    .custom-cursor,
+    .cursor-dot {
+        display: none;
+    }
+}
