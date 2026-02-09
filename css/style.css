@@ -704,14 +704,16 @@ footer {
 /* Мобильная версия (Телефоны) */
 @media (max-width: 768px) {
     h1 {
-        font-size: 12vw;
-        letter-spacing: 0.2em;
-        word-spacing: -0.2em;
+        font-size: 16vw !important;
+        letter-spacing: 0.02em !important;
+        word-spacing: 0.2em !important;
         padding: 0 10px;
+        text-align: center;
+        white-space: nowrap;
     }
 
     .hero-subtitle {
-        font-size: 14px;
+        font-size: 16px;
         margin-top: 15px;
         letter-spacing: 0.15em;
         text-align: center;
