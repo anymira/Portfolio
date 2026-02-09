@@ -167,11 +167,11 @@ h1 {
 }
 
 /* ================================
-   ABOUT SECTION
+   ABOUT SECTION (ИСПРАВЛЕНО)
    ================================ */
 .about-section {
     background: #000;
-    padding: 60px 0 0 0;
+    padding: 60px 5vw 0 5vw; /* Отступы как у .projects */
     margin-top: 60px;
     position: relative;
     overflow: visible;
@@ -180,14 +180,14 @@ h1 {
 .about-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 5vw;
+    padding: 0; /* Убрали внутренний padding */
     position: relative;
     z-index: 2;
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: 1fr 1fr; /* Равные колонки */
     gap: 60px;
     align-items: center;
     position: relative;
@@ -284,8 +284,8 @@ h1 {
 
 .about-image-block {
     position: relative;
-    width: 50vw;
-    max-width: 700px;
+    width: 100%; /* Занимает всю колонку */
+    max-width: none; /* Убрали ограничение */
     height: 600px;
     justify-self: end;
 }
@@ -642,6 +642,28 @@ footer {
     }
 }
 
+/* ================================
+   БОЛЬШИЕ МОНИТОРЫ (НОВОЕ)
+   ================================ */
+@media (min-width: 1420px) {
+    .about-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+    }
+
+    .about-title {
+        font-size: 48px; /* Фиксированный размер вместо vw */
+    }
+
+    .about-description {
+        font-size: 18px;
+    }
+
+    .about-image-block {
+        height: 650px;
+    }
+}
+
 /* СРЕДНИЕ ЭКРАНЫ (ПЛАНШЕТЫ) */
 @media (max-width: 1024px) {
     .about-grid {
@@ -707,12 +729,11 @@ footer {
     }
 
     .about-section {
-        padding: 60px 0 0 0;
-        margin-top: 60px;
+        padding: 60px 5vw 0 5vw;
     }
 
     .about-container {
-        padding: 0 5vw;
+        padding: 0;
     }
 
     .about-image-block {
@@ -847,6 +868,7 @@ footer {
         height: 350px;
     }
 }
+
 /* ПРИНУДИТЕЛЬНЫЙ ФИКС ЛУЧЕЙ */
 .beams-container {
     position: absolute !important;
