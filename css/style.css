@@ -710,10 +710,12 @@ footer {
     }
 
     .scroll-hint {
-        position: fixed;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
+        position: fixed !important;
+        bottom: 40px !important;
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center;
+        transform: none !important;
     }
 
     .project-grid {
