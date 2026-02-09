@@ -1,6 +1,6 @@
-// === АНИМАЦИЯ ФОТО ПРИ СКРОЛЛЕ ===
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
+// 1. АНИМАЦИЯ ФОТО ПРИ СКРОЛЛЕ (Только для десктопа)
 if (!isMobile) {
   const observerOptions = {
     threshold: 0.2,
@@ -21,16 +21,17 @@ if (!isMobile) {
   }
 }
 
-// === ЛУЧИ  ===
+// 2. ЛУЧИ (BEAMS)
 const beamsContainer = document.getElementById("beamsContainer");
 
-if (beamsContainer && !isMobile) {
-  const BEAM_COUNT = 12;
-  const MIN_DURATION = 2;
-  const MAX_DURATION = 6;
+if (beamsContainer) {
+  const BEAM_COUNT = 12; // Сколько лучей
+  const MIN_DURATION = 2; // Скорость (сек)
+  const MAX_DURATION = 5;
   const MIN_DELAY = 0;
-  const MAX_DELAY = 8;
+  const MAX_DELAY = 8; // Разброс старта
 
+  // Цвета
   const COLORS = [
     "rgba(0, 255, 136, 0.6)",
     "rgba(0, 212, 255, 0.5)",
@@ -53,18 +54,23 @@ function createBeam(container, colors, minDur, maxDur, minDelay, maxDelay) {
   const beam = document.createElement("div");
   beam.classList.add("beam");
 
+  // Случайная позиция
   const leftPos = Math.random() * 100;
   beam.style.left = leftPos + "%";
 
+  // Случайная высота
   const height = 40 + Math.random() * 120;
   beam.style.height = height + "px";
 
+  // Случайная скорость
   const duration = minDur + Math.random() * (maxDur - minDur);
   beam.style.animationDuration = duration + "s";
 
+  // Случайная задержка (чтобы падали не все сразу)
   const delay = minDelay + Math.random() * (maxDelay - minDelay);
   beam.style.animationDelay = delay + "s";
 
+  // Случайный цвет
   const color = colors[Math.floor(Math.random() * colors.length)];
   beam.style.background = `linear-gradient(to bottom, transparent, ${color}, transparent)`;
 
@@ -73,6 +79,7 @@ function createBeam(container, colors, minDur, maxDur, minDelay, maxDelay) {
 
   container.appendChild(beam);
 
+  // Вспышка при падении
   beam.addEventListener("animationiteration", () => {
     createSplash(container, leftPos, color);
   });
