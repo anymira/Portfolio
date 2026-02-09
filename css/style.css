@@ -709,6 +709,13 @@ footer {
         letter-spacing: 1.6;
     }
 
+    .scroll-hint {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .project-grid {
         grid-template-columns: 1fr;
         gap: 20px;
