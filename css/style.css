@@ -54,7 +54,7 @@ body {
 
 h1 {
     font-size: 12vw;
-    letter-spacing: 0em;
+    letter-spacing: 0.02em !important;
     text-align: center;
     white-space: nowrap;
     animation: fadeIn 1.8s cubic-bezier(0.19, 1, 0.22, 1) 0.2s both;
@@ -174,7 +174,7 @@ h1 {
     z-index: 2;
     color: #fff;
     font-size: 3vw;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.04em !important;
     margin-bottom: 8px;
 }
 
