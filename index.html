@@ -4,13 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- 1. ЗАГОЛОВОК -->
+        <!-- ЗАГОЛОВОК -->
         <title>Anna Diyanova | Senior Product Designer Portfolio</title>
 
-        <!-- 2. ОПИСАНИЕ  -->
+        <!-- ОПИСАНИЕ -->
         <meta
             name="description"
-            content="Portfolio of Anna Diyanova, a Senior Product Designer & UX/UI specialist based in [Твой Город]. Specializing in Design Systems, B2B, and Complex Ecosystems."
+            content="Portfolio of Anna Diyanova, a Senior Product Designer & UX/UI specialist. Specializing in Design Systems, B2B, and Complex Ecosystems."
         />
 
         <meta
@@ -20,7 +20,7 @@
 
         <meta name="author" content="Anna Diyanova" />
 
-        <!-- 5. OPEN GRAPH  -->
+        <!-- OPEN GRAPH -->
         <meta property="og:title" content="Anna Diyanova | Product Designer" />
         <meta
             property="og:description"
@@ -30,7 +30,6 @@
             property="og:image"
             content="https://annadiyanova.site/img/og-image.jpg"
         />
-        <!-- Сделай скриншот сайта и назови его og-image.jpg -->
         <meta property="og:url" content="https://annadiyanova.site/" />
         <meta property="og:type" content="website" />
 
@@ -39,6 +38,54 @@
         <link rel="stylesheet" href="css/cursor.css" />
         <link rel="icon" type="image/png" href="img/favicon.png" />
         <link rel="apple-touch-icon" href="img/favicon.png" />
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (m, e, t, r, i, k, a) {
+                m[i] =
+                    m[i] ||
+                    function () {
+                        (m[i].a = m[i].a || []).push(arguments);
+                    };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) {
+                        return;
+                    }
+                }
+                ((k = e.createElement(t)),
+                    (a = e.getElementsByTagName(t)[0]),
+                    (k.async = 1),
+                    (k.src = r),
+                    a.parentNode.insertBefore(k, a));
+            })(
+                window,
+                document,
+                "script",
+                "https://mc.yandex.ru/metrika/tag.js?id=106765753",
+                "ym",
+            );
+
+            ym(106765753, "init", {
+                ssr: true,
+                webvisor: true,
+                clickmap: true,
+                ecommerce: "dataLayer",
+                referrer: document.referrer,
+                url: location.href,
+                accurateTrackBounce: true,
+                trackLinks: true,
+            });
+        </script>
+        <noscript
+            ><div>
+                <img
+                    src="https://mc.yandex.ru/watch/106765753"
+                    style="position: absolute; left: -9999px"
+                    alt=""
+                /></div
+        ></noscript>
+        <!-- /Yandex.Metrika counter -->
     </head>
     <body>
         <div class="main-wrapper">
@@ -51,36 +98,52 @@
 
             <section class="projects">
                 <div class="project-grid">
+                    <!-- Заменю href на ссыдки чуть позже -->
                     <a href="javascript:void(0)" class="project-card">
-                        <img src="img/work1.jpg" alt="" />
+                        <img
+                            src="img/work1.jpg"
+                            alt="Family Subscription mobile and web interface design"
+                        />
                         <div class="project-info">
                             <h3>Family Subscription</h3>
                             <p class="project-subtitle">Mobile/Web</p>
                         </div>
                     </a>
                     <a href="javascript:void(0)" class="project-card">
-                        <img src="img/work2.jpg" alt="" />
+                        <img
+                            src="img/work2.jpg"
+                            alt="Bridge.Travel delivery service application UI"
+                        />
                         <div class="project-info">
                             <h3>Bridge.Travel</h3>
                             <p class="project-subtitle">Delivery Service App</p>
                         </div>
                     </a>
                     <a href="javascript:void(0)" class="project-card">
-                        <img src="img/work3.jpg" alt="" />
+                        <img
+                            src="img/work3.jpg"
+                            alt="B2B Web Platform Personal Account Dashboard"
+                        />
                         <div class="project-info">
                             <h3>Personal Account</h3>
                             <p class="project-subtitle">B2B Web Platform</p>
                         </div>
                     </a>
                     <a href="javascript:void(0)" class="project-card">
-                        <img src="img/work4.jpg" alt="" />
+                        <img
+                            src="img/work4.jpg"
+                            alt="Taxi Service mobile app user interface"
+                        />
                         <div class="project-info">
                             <h3>Taxi Service</h3>
                             <p class="project-subtitle">Mobile App</p>
                         </div>
                     </a>
                     <a href="javascript:void(0)" class="project-card">
-                        <img src="img/work5.jpg" alt="" />
+                        <img
+                            src="img/work5.jpg"
+                            alt="Flower Aggregator marketplace app design"
+                        />
                         <div class="project-info">
                             <h3>Flower Aggregator</h3>
                             <p class="project-subtitle">Mobile App</p>
@@ -124,9 +187,10 @@
                     <div class="about-image-block">
                         <div class="about-image-wrapper">
                             <div class="image-accent-bg"></div>
+                            <!-- ALT: Кто на фото -->
                             <img
                                 src="img/me-big.jpg"
-                                alt="Anna Diyanova"
+                                alt="Portrait of Anna Diyanova, Senior Product Designer"
                                 class="about-image"
                             />
                             <div class="image-overlay-grid"></div>
@@ -142,11 +206,11 @@
             </div>
         </section>
 
-        <!-- СЕКЦИЯ С БОЛЬШИМ ФОТО (старая) -->
+        <!-- СЕКЦИЯ С БОЛЬШИМ ФОТО (старая, скрытая) -->
         <section class="about-photo-section" style="display: none">
             <div class="photo-container">
                 <div class="photo-wrapper">
-                    <img src="img/me-big.jpg" alt="Anna Diyanova" />
+                    <img src="img/me-big.jpg" alt="Anna Diyanova photo" />
                 </div>
             </div>
         </section>
