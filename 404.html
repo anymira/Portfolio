@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>404 — Page Not Found</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/cursor.css" />
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <style>
+            .error-page {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                position: relative;
+                background: #000;
+            }
+
+            .error-title {
+                font-size: 15vw;
+                font-weight: bold;
+                letter-spacing: 0.02em;
+                position: relative;
+                z-index: 20;
+                background: linear-gradient(
+                    135deg,
+                    #fff 0%,
+                    rgba(255, 255, 255, 0.8) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin: 0;
+                line-height: 1;
+            }
+
+            .error-subtitle {
+                font-size: 2vw;
+                letter-spacing: 0.4em;
+                color: rgba(255, 255, 255, 0.8);
+                margin-top: 20px;
+                position: relative;
+                z-index: 20;
+            }
+
+            /* Контейнер для градиентов и частиц */
+            .sparkles-container {
+                position: relative;
+                width: 40rem;
+                max-width: 90vw;
+                height: 150px;
+                margin-top: -20px;
+                background: transparent;
+            }
+
+            /* Градиентные линии */
+            .gradient-line {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 2px;
+                border-radius: 2px;
+            }
+
+            .gradient-line-1 {
+                width: 75%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #00ff88,
+                    #00d4ff,
+                    transparent
+                );
+                filter: blur(4px);
+                opacity: 0.8;
+            }
+
+            .gradient-line-2 {
+                width: 75%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #00ff88,
+                    #00d4ff,
+                    transparent
+                );
+                height: 1px;
+            }
+
+            .gradient-line-3 {
+                width: 25%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #00d4ff,
+                    transparent
+                );
+                height: 4px;
+                filter: blur(3px);
+                opacity: 0.9;
+            }
+
+            .gradient-line-4 {
+                width: 25%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #00d4ff,
+                    transparent
+                );
+                height: 1px;
+            }
+
+            /* Canvas для частиц */
+            #sparkles-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background: transparent;
+            }
+
+            /* Убрали маску — теперь прозрачно */
+            .sparkles-mask {
+                display: none;
+            }
+
+            /* Кнопка */
+            .error-button {
+                margin-top: 60px;
+                position: relative;
+                z-index: 20;
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                padding: 20px 50px;
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+                letter-spacing: 0.2em;
+                border: 1px solid #fff;
+                border-radius: 60px;
+                transition: all 0.4s ease;
+                cursor: none;
+            }
+
+            .error-button:hover {
+                background: linear-gradient(135deg, #00ff88, #00d4ff);
+                color: #000;
+                border-color: transparent;
+                transform: scale(1.05);
+            }
+
+            .error-button svg {
+                transition: transform 0.4s ease;
+            }
+
+            .error-button:hover svg {
+                transform: translateX(-5px);
+            }
+
+            /* Фоновое свечение */
+            .bg-glow {
+                position: absolute;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                filter: blur(150px);
+                opacity: 0.15;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .bg-glow-1 {
+                top: 10%;
+                left: 10%;
+                background: #00ff88;
+            }
+
+            .bg-glow-2 {
+                bottom: 10%;
+                right: 10%;
+                background: #00d4ff;
+            }
+
+            /* Адаптив */
+            @media (max-width: 768px) {
+                .error-title {
+                    font-size: 25vw;
+                }
+
+                .error-subtitle {
+                    font-size: 14px;
+                    letter-spacing: 0.2em;
+                }
+
+                .sparkles-container {
+                    width: 90vw;
+                    height: 100px;
+                }
+
+                .error-button {
+                    padding: 15px 35px;
+                    font-size: 12px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-page">
+            <!-- Фоновые свечения -->
+            <div class="bg-glow bg-glow-1"></div>
+            <div class="bg-glow bg-glow-2"></div>
+
+            <!-- Заголовок -->
+            <h1 class="error-title">404</h1>
+
+            <!-- Контейнер с искрами -->
+            <div class="sparkles-container">
+                <!-- Градиентные линии -->
+                <div class="gradient-line gradient-line-1"></div>
+                <div class="gradient-line gradient-line-2"></div>
+                <div class="gradient-line gradient-line-3"></div>
+                <div class="gradient-line gradient-line-4"></div>
+
+                <!-- Canvas для частиц -->
+                <canvas id="sparkles-canvas"></canvas>
+
+                <!-- Маска -->
+                <div class="sparkles-mask"></div>
+            </div>
+
+            <!-- Подзаголовок -->
+            <p class="error-subtitle">Page Not Found</p>
+
+            <!-- Кнопка -->
+            <a href="index.html" class="error-button">
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+
+        <!-- Кастомный курсор -->
+        <div class="custom-cursor"></div>
+        <div class="cursor-dot"></div>
+
+        <script src="js/cursor.js"></script>
+        <script>
+            // Sparkles Animation
+            const canvas = document.getElementById("sparkles-canvas");
+            const ctx = canvas.getContext("2d");
+
+            let particles = [];
+            const particleCount = 150;
+
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+            }
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedY = Math.random() * 0.5 + 0.2;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.fadeSpeed = Math.random() * 0.02 + 0.005;
+                    this.growing = Math.random() > 0.5;
+                }
+
+                update() {
+                    this.y -= this.speedY;
+                    this.x += this.speedX;
+
+                    // Мерцание
+                    if (this.growing) {
+                        this.opacity += this.fadeSpeed;
+                        if (this.opacity >= 1) this.growing = false;
+                    } else {
+                        this.opacity -= this.fadeSpeed;
+                        if (this.opacity <= 0.2) this.growing = true;
+                    }
+
+                    // Сброс при выходе за пределы
+                    if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
+                        this.reset();
+                        this.y = canvas.height;
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                resizeCanvas();
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach((particle) => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener("resize", () => {
+                resizeCanvas();
+            });
+
+            init();
+            animate();
+        </script>
+    </body>
+</html>

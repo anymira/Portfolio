@@ -2,17 +2,15 @@
    1. ШРИФТЫ
    ================================ */
 
-/* Обычный шрифт (для всего сайта) */
 @font-face {
     font-family: "Formula";
     src: url("../formula.otf") format("opentype");
     font-display: swap;
 }
 
-/* Жирный шрифт (Только для H1) */
 @font-face {
     font-family: "Formula";
-    src: url("../formula-bold.otf") format("opentype"); /* Убедитесь, что имя файла верное */
+    src: url("../formula-bold.otf") format("opentype");
     font-weight: bold;
     font-display: swap;
 }
@@ -58,7 +56,7 @@ h1 {
     text-align: center;
     white-space: nowrap;
     animation: fadeIn 1.8s cubic-bezier(0.19, 1, 0.22, 1) 0.2s both;
-    font-weight: bold; /* Жирный шрифт */
+    font-weight: bold;
 }
 
 .hero-subtitle {
@@ -72,7 +70,6 @@ h1 {
     z-index: 2;
 }
 
-/* Подсказка скролла */
 .scroll-hint {
     position: absolute;
     bottom: 40px;
@@ -131,6 +128,7 @@ h1 {
     margin: 0 auto;
 }
 
+/* --- Карточка --- */
 .project-card {
     position: relative;
     aspect-ratio: 16/9;
@@ -141,18 +139,90 @@ h1 {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    transition: border-color 0.4s ease;
     cursor: none;
-}
-
-.project-card:hover {
-    border-color: #fff;
+    transition:
+        transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .project-card:nth-child(5) {
     grid-column: 1 / span 2;
 }
 
+.project-card:hover {
+    border-color: transparent;
+}
+
+/* --- Comet Border --- */
+.comet-border {
+    position: absolute;
+    inset: -1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.comet-border::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 320deg,
+        #00ff88 330deg,
+        #00d4ff 345deg,
+        #00ff88 360deg
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.comet-card:hover .comet-border::before {
+    opacity: 1;
+    animation: comet-rotate 2.5s linear infinite;
+}
+
+.comet-border::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #111;
+    z-index: 1;
+}
+
+@keyframes comet-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Glow --- */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    opacity: 0;
+    filter: blur(20px);
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.project-card:hover::before {
+    opacity: 0.2;
+}
+
+/* --- Картинка --- */
 .project-card img {
     position: absolute;
     width: 100%;
@@ -161,6 +231,7 @@ h1 {
     opacity: 0.4;
     filter: grayscale(100%);
     transition: all 0.8s ease;
+    z-index: 2;
 }
 
 .project-card:hover img {
@@ -169,22 +240,23 @@ h1 {
     transform: scale(1.05);
 }
 
-.project-card h3 {
-    position: relative;
-    z-index: 2;
-    color: #fff;
-    font-size: 3vw;
-    letter-spacing: 0.04em !important;
-    margin-bottom: 8px;
-}
-
+/* --- Текст --- */
 .project-info {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.project-card h3 {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    font-size: 3vw;
+    letter-spacing: 0.04em !important;
+    margin-bottom: 8px;
 }
 
 .project-subtitle {
@@ -720,7 +792,6 @@ footer {
         padding: 0 20px;
     }
 
-    /* ФИКС SCROLL HINT (Прибит к низу) */
     .scroll-hint {
         position: fixed !important;
         bottom: 40px !important;
@@ -750,6 +821,10 @@ footer {
         letter-spacing: 0.15em;
     }
 
+    .comet-card:hover .comet-border::before {
+        animation: comet-rotate 1.5s linear infinite;
+    }
+
     .about-section {
         padding: 60px 5vw 0 5vw;
     }
@@ -767,22 +842,27 @@ footer {
         font-size: 12px;
         letter-spacing: 0.3em;
     }
+
     .about-title {
         font-size: 28px;
         letter-spacing: 0.05em;
     }
+
     .about-description {
         font-size: 16px;
         line-height: 1.6;
         letter-spacing: 0.08em;
     }
+
     .stat-number {
         font-size: 40px;
     }
+
     .deco-circle {
         width: 150px;
         height: 150px;
     }
+
     .deco-line {
         width: 100px;
     }
@@ -791,21 +871,23 @@ footer {
         flex-direction: row;
         justify-content: flex-start;
     }
+
     .footer-social a {
         padding: 8px 16px;
         font-size: 12px;
     }
+
     .footer-email {
         font-size: 6vw;
     }
 
-    /* Фикс фото-секции на мобильных */
     .about-photo-section {
         padding: 0 !important;
         min-height: 100vh !important;
         height: 100vh !important;
         margin: 0 !important;
     }
+
     .photo-container {
         width: 100% !important;
         height: 100% !important;
@@ -816,6 +898,7 @@ footer {
         margin: 0 !important;
         padding: 0 !important;
     }
+
     .photo-wrapper {
         width: 100vw !important;
         height: 100vh !important;
@@ -827,9 +910,11 @@ footer {
         margin: 0 !important;
         padding: 0 !important;
     }
+
     .photo-wrapper::before {
         display: none !important;
     }
+
     .photo-wrapper img {
         position: absolute !important;
         top: 0 !important;
@@ -843,6 +928,7 @@ footer {
         object-fit: cover !important;
         object-position: center !important;
     }
+
     .photo-wrapper:hover img {
         transform: translateX(-50%) !important;
     }
@@ -855,18 +941,22 @@ footer {
         letter-spacing: 0.02em;
         padding: 0 15px;
     }
+
     .hero-subtitle {
         font-size: 12px;
         padding: 0 15px;
         letter-spacing: 0.1em;
         text-align: center;
     }
+
     .about-title {
         font-size: 24px;
     }
+
     .about-description {
         font-size: 16px;
     }
+
     .about-image-block {
         height: 350px;
     }
