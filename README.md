@@ -38,12 +38,42 @@ I used this project to bridge the gap between design and frontend engineering, p
 
 ## 📂 Project Structure
 
-```text
 ├── css/
-│   ├── style.css       # Main layout styles
-│   └── cursor.css      # Logic for the custom cursor
-├── img/                # Project thumbnails and assets
+│   ├── style.css               # Main layout styles
+│   ├── cursor.css              # Custom cursor styles
+│   └── case-study.css          # Case study page styles
+├── img/
+│   ├── cases/
+│   │   ├── bridgetravel-00.avif
+│   │   ├── bridgetravel-01.avif
+│   │   ├── bridgetravel-02.avif
+│   │   ├── bridgetravel-03.avif
+│   │   ├── family-sub-01.avif
+│   │   ├── family-sub-02.avif
+│   │   ├── family-sub-03.avif
+│   │   ├── family-sub-04.avif
+│   │   ├── family-sub-05.avif
+│   │   ├── family-sub-06.avif
+│   │   └── ...
+│   ├── work1.jpg               # Project card thumbnails
+│   ├── work2.jpg
+│   ├── work3.jpg
+│   ├── work4.jpg
+│   ├── work5.jpg
+│   ├── me-big.jpg              # About section photo
+│   ├── og-image.jpg            # Open Graph preview
+│   ├── arrow.svg               # Footer link arrow icon
+│   └── favicon.png             # Site favicon
 ├── js/
-│   ├── main.js         # General site interactions
-│   └── cursor.js       # Mouse tracking logic
-└── index.html          # Main markup
+│   ├── main.js                 # General site interactions
+│   ├── cursor.js               # Mouse tracking logic
+│   └── tracing-beam.js         # Case study scroll indicator
+├── index.html                  # Main page
+├── case-bridge_travel.html     # Case: Bridge.Travel application
+├── case-family.html            # Case: Family Subscription
+├── case-flower-aggregator.html # Case: Flower Aggregator App
+├── case-personal-account.html  # Case: Exhibition Personal Account
+├── case-taxi-service.html      # Case: Taxi Service Application
+├── 404.html                # Error page
+├── formula.otf             # Font regular
+└── formula-bold.otf        # Font bold
