@@ -1059,6 +1059,16 @@ footer {
         height: 400px;
     }
 
+    .reveal-ready .about-image-block.scroll-reveal {
+        filter: blur(7px);
+        transform: translateY(44px) scale(0.965);
+    }
+
+    .reveal-ready .about-image-block.scroll-reveal.is-visible {
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+    }
+
     .about-label {
         font-size: 12px;
         letter-spacing: 0.3em;

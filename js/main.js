@@ -45,7 +45,6 @@ const revealItems = [
   [".about-title", 180],
   [".about-description", 360],
   [".about-stats", 540],
-  [".about-image-block", 240],
   [".awards-label", 0],
 ];
 
@@ -63,7 +62,13 @@ document.querySelectorAll(".award-card").forEach((card, index) => {
 });
 
 const revealElements = document.querySelectorAll(".scroll-reveal");
+const aboutImageBlock = document.querySelector(".about-image-block");
 const statNumberElement = document.querySelector(".stat-number");
+
+if (aboutImageBlock) {
+  aboutImageBlock.classList.add("scroll-reveal", "about-image-reveal");
+  aboutImageBlock.style.setProperty("--reveal-delay", "120ms");
+}
 
 if (statNumberElement && !prefersReducedMotion) {
   prepareStatNumber(statNumberElement);
@@ -73,6 +78,10 @@ if (prefersReducedMotion) {
   revealElements.forEach((element) => {
     element.classList.add("is-visible");
   });
+
+  if (aboutImageBlock) {
+    aboutImageBlock.classList.add("is-visible");
+  }
 
   if (statNumberElement) {
     statNumberElement.dataset.counted = "true";
@@ -158,6 +167,39 @@ if (prefersReducedMotion) {
     window.addEventListener("scroll", countNumberWhenReady, { passive: true });
     window.addEventListener("resize", countNumberWhenReady);
     countNumberWhenReady();
+  }
+
+  if (aboutImageBlock) {
+    const revealAboutImage = () => {
+      if (aboutImageBlock.classList.contains("is-visible")) return;
+
+      const rect = aboutImageBlock.getBoundingClientRect();
+      const triggerLine = window.innerHeight * (isMobile ? 0.62 : 0.8);
+
+      if (rect.top < triggerLine && rect.bottom > 0) {
+        aboutImageBlock.classList.add("is-visible");
+      }
+    };
+
+    const aboutImageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          revealAboutImage();
+          aboutImageObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: isMobile ? 0.35 : 0.2,
+        rootMargin: isMobile ? "0px 0px -28% 0px" : "0px 0px -12% 0px",
+      },
+    );
+
+    aboutImageObserver.observe(aboutImageBlock);
+    window.addEventListener("scroll", revealAboutImage, { passive: true });
+    window.addEventListener("resize", revealAboutImage);
+    revealAboutImage();
   }
 }
 
