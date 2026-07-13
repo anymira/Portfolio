@@ -564,6 +564,14 @@ h1 {
     transform: translateY(0);
 }
 
+.reveal-ready .about-image-block.scroll-reveal {
+    transform: translateY(28px) scale(0.985);
+}
+
+.reveal-ready .about-image-block.scroll-reveal.is-visible {
+    transform: translateY(0) scale(1);
+}
+
 .reveal-ready .award-card.scroll-reveal {
     transform: translateY(28px) scale(0.985);
 }

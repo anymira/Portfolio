@@ -45,6 +45,7 @@ const revealItems = [
   [".about-title", 180],
   [".about-description", 360],
   [".about-stats", 540],
+  [".about-image-block", 240],
   [".awards-label", 0],
 ];
 
