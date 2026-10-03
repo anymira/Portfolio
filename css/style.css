@@ -1402,6 +1402,10 @@ footer {
     }
 }
 
+.awards-section.publications-section {
+    padding-top: 0;
+}
+
 /* ================================
    SELECTED VISUALS MARQUEE
    ================================ */
