@@ -41,6 +41,7 @@ button,
     height: 4px;
     border-radius: 50%;
     background-color: #fff;
+    mix-blend-mode: difference;
     pointer-events: none;
     z-index: 10000;
 

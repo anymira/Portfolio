@@ -293,11 +293,13 @@ h1 {
 
 /* --- Карточка --- */
 .project-card {
+    --card-radius: 20px;
     position: relative;
     aspect-ratio: 16/9;
     background: #111;
     overflow: hidden;
     border: 1px solid #222;
+    border-radius: var(--card-radius);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,6 +314,7 @@ h1 {
 }
 
 .project-card:nth-child(5) {
+    --card-radius: 40px;
     grid-column: 1 / span 2;
 }
 
@@ -324,6 +327,7 @@ h1 {
     position: absolute;
     inset: -1px;
     overflow: hidden;
+    border-radius: inherit;
     pointer-events: none;
     z-index: 0;
 }
@@ -356,6 +360,7 @@ h1 {
     content: "";
     position: absolute;
     inset: 2px;
+    border-radius: calc(var(--card-radius) - 2px);
     background: #111;
     z-index: 1;
 }
@@ -574,14 +579,15 @@ h1 {
 
 .reveal-ready .award-card.scroll-reveal {
     transform: translateY(28px) scale(0.985);
+    transition:
+        opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+        filter 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+        transform 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+        translate 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 .reveal-ready .award-card.scroll-reveal.is-visible {
     transform: translateY(0) scale(1);
-}
-
-.reveal-ready .award-card.scroll-reveal.is-visible:hover {
-    transform: translateY(-4px) scale(1);
 }
 
 .about-image-block {
@@ -596,7 +602,7 @@ h1 {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 0px;
+    border-radius: 24px;
     overflow: hidden;
 }
 
@@ -1028,7 +1034,9 @@ footer {
         gap: 20px;
     }
 
-    .project-card {
+    .project-card,
+    .project-card:nth-child(5) {
+        --card-radius: 20px;
         grid-column: auto !important;
     }
 
@@ -1196,9 +1204,39 @@ footer {
    RECOGNITION & AWARDS
    ================================ */
 
+.pixel-transition {
+    --pixel-from: #000000;
+    --pixel-to: #ffffff;
+    --pixel-mint: #00ff88;
+    --pixel-cyan: #00d4ff;
+    height: 670px;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(var(--pixel-from) 50%, var(--pixel-to) 50%);
+}
+
+.pixel-transition-dark {
+    --pixel-from: #ffffff;
+    --pixel-to: #000000;
+}
+
+.pixel-transition canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pixel-transition {
+        height: 96px;
+    }
+}
+
 .awards-section {
-    background: #000;
-    padding: 160px 5vw;
+    background: #fff;
+    color: #0f172a;
+    padding: 24px 5vw 96px;
     position: relative;
     overflow: hidden;
 }
@@ -1216,7 +1254,7 @@ footer {
     gap: 10px;
     font-size: 14px;
     letter-spacing: 0.4em;
-    color: rgba(255, 255, 255, 0.5);
+    color: #000000;
     margin-bottom: 50px;
     text-transform: uppercase;
 }
@@ -1234,22 +1272,31 @@ footer {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 0%;
+    background:
+        linear-gradient(#f8fafc, #f8fafc) padding-box,
+        linear-gradient(#e2e8f0, #e2e8f0) border-box;
+    border: 1px solid transparent;
+    border-radius: 20px;
     padding: 32px;
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    translate: 0 0;
+    transition: translate 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
 }
 
+.award-card:hover,
+.award-card:focus-within {
+    background:
+        linear-gradient(#f8fafc, #f8fafc) padding-box,
+        linear-gradient(135deg, #00ff88, #00d4ff) border-box;
+}
+
 .award-card:hover {
-    border-color: rgba(0, 255, 136, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-4px);
+    translate: 0 -14px;
 }
 
 /* Свечение карточки */
 .award-card-glow {
+    display: none;
     position: absolute;
     top: -50%;
     left: -50%;
@@ -1287,7 +1334,7 @@ footer {
     font-size: 26px;
     line-height: 1.4;
     letter-spacing: 0.1em;
-    color: #fff;
+    color: #1a1a1a;
     font-weight: medium;
 }
 
@@ -1309,7 +1356,7 @@ footer {
 .award-detail-label {
     font-size: 18px;
     letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.55);
+    color: #475569;
     text-transform: uppercase;
     min-width: 70px;
 }
@@ -1319,22 +1366,16 @@ footer {
     overflow-wrap: anywhere;
     font-size: 18px;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.8);
+    color: #334155;
 }
 
-.award-status-winner {
-    background: linear-gradient(135deg, #00ff88, #00d4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: bold;
-}
-
+.award-status-winner,
 .award-status-finalist {
-    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    background: linear-gradient(174.375deg, #143b29 0%, #2b99b0 70.721%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #143b29;
     font-weight: bold;
 }
 
@@ -1343,7 +1384,7 @@ footer {
     font-size: 15px;
     line-height: 1.7;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.5);
+    color: #475569;
     margin-bottom: 20px;
 }
 
@@ -1355,16 +1396,30 @@ footer {
     max-width: 100%;
     align-items: center;
     gap: 8px;
+    min-height: 46px;
+    padding: 12px 16px;
+    border-radius: 80px;
+    background: #1a1a1a;
     font-size: 16px;
+    line-height: 1.4;
     letter-spacing: 0.12em;
-    color: #00ff88;
+    color: #00d4ff;
     text-decoration: none;
-    transition: gap 0.3s ease;
     text-transform: uppercase;
 }
 
-.award-link:hover {
-    gap: 12px;
+.award-link span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    background: linear-gradient(167deg, #00ff88 0%, #00d4ff 70.721%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.award-link:focus-visible {
+    outline: 2px solid #0f172a;
+    outline-offset: 6px;
 }
 
 .award-link svg {
@@ -1388,7 +1443,7 @@ footer {
 
 @media (max-width: 768px) {
     .awards-section {
-        padding: 120px 5vw;
+        padding: 24px 5vw 96px;
     }
 
     .awards-grid {
@@ -1415,6 +1470,7 @@ footer {
 
 .awards-section.publications-section {
     padding-top: 0;
+    padding-bottom: 24px;
 }
 
 @media (max-width: 480px) {
@@ -1425,6 +1481,19 @@ footer {
 
     .award-details {
         gap: 16px;
+    }
+}
+
+/* Progressive approximation of Figma's smooth corners; radius is the fallback. */
+@supports (corner-shape: superellipse(1.6)) {
+    .project-card,
+    .comet-border,
+    .comet-border::after,
+    .about-image-wrapper,
+    .award-card,
+    .visual-marquee-shell,
+    .visual-marquee-stage {
+        corner-shape: superellipse(1.6);
     }
 }
 
@@ -1444,7 +1513,7 @@ footer {
     margin: 0 auto;
     padding: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0%;
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.03);
 }
 
@@ -1552,6 +1621,7 @@ footer {
         opacity: 1;
         filter: none;
         transform: none;
+        translate: none;
         transition: none;
     }
 
@@ -1568,7 +1638,7 @@ footer {
     }
 
     .visual-marquee-shell {
-        border-radius: 0px;
+        border-radius: 20px;
         padding: 6px;
     }
 
