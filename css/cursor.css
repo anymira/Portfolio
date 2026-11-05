@@ -1,50 +1,18 @@
-/* Отключаем стандартный курсор */
-body,
-a,
-button,
-.project-card {
-    cursor: none;
-}
+/* Native pointer is the fallback until the effect actually receives a mouse. */
+html body { cursor: auto; }
+html body a, html body button, html body .project-card { cursor: pointer; }
+.custom-cursor, .cursor-dot { display: none; }
 
-.custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    pointer-events: none;
-    z-index: 9999;
-
-    /* УБРАЛИ transform: translate(-50%, -50%) */
-    /* УБРАЛИ transition для transform, чтобы не тормозило */
-    transition:
-        width 0.3s,
-        height 0.3s,
-        background-color 0.3s,
-        opacity 0.3s;
-    mix-blend-mode: difference;
-}
-
-.custom-cursor.hover {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #fff;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    z-index: 10000;
-
-    /* УБРАЛИ transform: translate(-50%, -50%) */
-    /* УБРАЛИ transition вообще */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    html.has-liquid-cursor, html.has-liquid-cursor * { cursor: none !important; }
+    .custom-cursor {
+        display: block;
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+    }
+    .custom-cursor.is-visible { opacity: 1; }
+    .custom-cursor canvas { display: block; width: 100%; height: 100%; }
 }
